@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Selection</title>
+</head>
+
+<body>
+    <h1>Car Selection</h1>
+    <label for="carBrand">Select Brand:</label>
+    <select id="carBrand"></select>
+
+    <label for="carCategory">Select Category:</label>
+    <select id="carCategory"></select>
+
+    <label for="carModel">Select Model:</label>
+    <select id="carModel"></select>
+
+    <label for="carYear">Select Year:</label>
+    <select id="carYear"></select>
+
+    <script>
+        document.getElementById('carBrand').addEventListener('change', async function () {
+            const selectedBrand = this.value;
+
+            // Fetch categories for the selected brand using an AJAX request
+            const categoriesResponse = await fetch(`/categories?brand=${selectedBrand}`);
+            const categories = await categoriesResponse.json();
+
+            // Update the categories dropdown
+            const carCategoryDropdown = document.getElementById('carCategory');
+            carCategoryDropdown.innerHTML = '';
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.category;
+                option.textContent = category.category;
+                carCategoryDropdown.appendChild(option);
+            });
+
+            // Trigger the change event on the category dropdown to fetch models
+            carCategoryDropdown.dispatchEvent(new Event('change'));
+        });
+
+        document.getElementById('carCategory').addEventListener('change', async function () {
+            const selectedBrand = document.getElementById('carBrand').value;
+            const selectedCategory = this.value;
+
+            // Fetch models for the selected brand and category using an AJAX request
+            const modelsResponse = await fetch(`/models?brand=${selectedBrand}&category=${selectedCategory}`);
+            const models = await modelsResponse.json();
+
+            // Update the models dropdown
+            const carModelDropdown = document.getElementById('carModel');
+            carModelDropdown.innerHTML = '';
+            models.forEach(model => {
+                const option = document.createElement('option');
+                option.value = model.model;
+                option.textContent = model.model;
+                carModelDropdown.appendChild(option);
+            });
+
+            // Trigger the change event on the model dropdown to fetch years
+            carModelDropdown.dispatchEvent(new Event('change'));
+        });
+
+        document.getElementById('carModel').addEventListener('change', async function () {
+            const selectedBrand = document.getElementById('carBrand').value;
+            const selectedCategory = document.getElementById('carCategory').value;
+            const selectedModel = this.value;
+
+            // Fetch years for the selected brand, category, and model using an AJAX request
+            const yearsResponse = await fetch(`/years?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}`);
+            const years = await yearsResponse.json();
+
+            // Update the years dropdown
+            const carYearDropdown = document.getElementById('carYear');
+            carYearDropdown.innerHTML = '';
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year.year;
+                option.textContent = year.year;
+                carYearDropdown.appendChild(option);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+/* index.css */
+@font-face {
+    font-family: 'CustomFont';
+    src: url('Kanit-ExtraBold.ttf') format('truetype');
+    /* Specify the font family and the path to the font file */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'CustomFont', sans-serif;
+    background: url('back.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+header {
+    position: relative;
+    top: 20px;
+    background-color: rgba(225, 214, 214, 0);
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+    position: relative;
+}
+
+a:before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #007BFF;
+    transition: width 0.5s ease;
+    /* Adding transition for a smooth effect */
+}
+
+a:hover:before {
+    width: 100%;
+    /* Increase width on hover */
+}
+
+.main-content {
+    padding: 20px;
+    color: #c5d3d3;
+    font-size: x-large;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(162, 151, 151, 0);
+}
+
+.category-select {
+    margin-top: 20px;
+    text-align: center;
+    color: hsl(180, 14%, 80%);
+}
+
+label {
+    margin-right: 10px;
+    font-size: x-large;
+    /* Increase font size */
+    color: #dbd2d2;
+    display: block;
+}
+
+select {
+    display: inline-block;
+    /* Display the select element as inline-block */
+    padding: 10px;
+    /* Increase button size */
+    font-size: x-large;
+    /* Increase font size */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #7c7878;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    margin-right: 15px;
+    /* Add more margin for spacing between dropdowns */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Remove default arrow in Firefox and Safari */
+    background-image: url('right.png');
+    /* Add your custom arrow icon */
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+select:hover,
+select:focus {
+    border-color: #007BFF;
+    background-color: #f4f4f4;
+}
+
+select:active,
+select:checked {
+    border-color: #007BFF;
+    background-color: #f4f4f4;
+}
+
+.category-image {
+    display: none;
+    width: 100px;
+    height: auto;
+    margin-top: 15px;
+    /* Add more margin for spacing between images */
+}
+
+#audi-image,
+#sedan-image,
+#2022-image {
+    display: inline;
+}
+
+/* Show the corresponding image when its category is selected */
+#carBrand[value="audi"]:checked~#audi-image {
+    display: inline;
+    /* Show the image when Audi is selected */
+}
+
+#carBrand[value="bmw"]:checked~#bmw-image {
+    display: inline;
+    /* Show the image when BMW is selected */
+}
+
+#carBrand[value="mercedes"]:checked~#mercedes-image {
+    display: inline;
+    /* Show the image when Mercedes is selected */
+}
+
+#carModel[value="sedan"]:checked~#sedan-image {
+    display: inline;
+    /* Show the image when Sedan is selected */
+}
+
+#carModel[value="suv"]:checked~#suv-image {
+    display: inline;
+    /* Show the image when SUV is selected */
+}
+
+#carModel[value="hatchback"]:checked~#hatchback-image {
+    display: inline;
+
+    /* Show the image when Hatchback is selected */
+}
