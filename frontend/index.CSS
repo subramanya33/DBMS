@@ -22,12 +22,25 @@ header {
     text-align: center;
 }
 
+.header-links {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.header-link {
+    margin-left: 10px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     text-align: right;
 }
+
 
 nav li {
     display: inline-block;
@@ -85,8 +98,10 @@ label {
 }
 
 select {
-    display: inline-block;
-    /* Display the select element as inline-block */
+    display: block;
+    /* Display the select element as block */
+    margin: 0 auto;
+    /* Center the select element */
     padding: 10px;
     /* Increase button size */
     font-size: x-large;
@@ -96,8 +111,6 @@ select {
     background-color: #fff;
     color: #7c7878;
     transition: border-color 0.3s ease, background-color 0.3s ease;
-    margin-right: 15px;
-    /* Add more margin for spacing between dropdowns */
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -106,6 +119,23 @@ select {
     /* Add your custom arrow icon */
     background-repeat: no-repeat;
     background-position: right center;
+}
+
+.input-container button {
+    margin-top: 10px;
+    font-size: x-large;
+}
+
+.input-container {
+    text-align: center;
+    margin-bottom: 20px;
+    /* Add some spacing between input containers */
+}
+
+/* Add this to center the labels within the input containers */
+.input-container label {
+    display: block;
+    margin-bottom: 5px;
 }
 
 select:hover,
@@ -162,6 +192,5 @@ select:checked {
 
 #carModel[value="hatchback"]:checked~#hatchback-image {
     display: inline;
-
     /* Show the image when Hatchback is selected */
 }

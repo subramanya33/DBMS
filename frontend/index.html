@@ -9,21 +9,52 @@
 </head>
 
 <body>
+    <div class="header-links">
+        <a href="index.html" class="header-link">Home</a>
+        <a href="#" class="header-link">Login</a>
+        <a href="#" class="header-link">About</a>
+    </div>
     <h1>Car Selection</h1>
-    <label for="carBrand">Select Brand:</label>
-    <select id="carBrand"></select>
+    <div class="input-container">
+        <label for="carBrand">Select Brand:</label>
+        <select id="carBrand"></select>
+    </div>
 
-    <label for="carCategory">Select Category:</label>
-    <select id="carCategory"></select>
+    <div class="input-container">
+        <label for="carCategory">Select Category:</label>
+        <select id="carCategory"></select>
+    </div>
 
-    <label for="carModel">Select Model:</label>
-    <select id="carModel"></select>
+    <div class="input-container">
+        <label for="carModel">Select Model:</label>
+        <select id="carModel"></select>
+    </div>
 
-    <label for="carYear">Select Year:</label>
-    <select id="carYear"></select>
-
+    <div class="input-container">
+        <label for="carYear">Select Year:</label>
+        <select id="carYear"></select>
+    </div>
+    <div class="input-container">
+        <!-- Add a search button with the same font style -->
+        <button id="searchButton">Go</button>
+    </div>
     <script>
-        document.getElementById('carBrand').addEventListener('change', async function () {
+        // Array of car brands
+        const carBrands = ['Audi', 'BMW', 'Mercedes'];
+
+        // Select the carBrand dropdown
+        const carBrandDropdown = document.getElementById('carBrand');
+
+        // Populate the carBrand dropdown with options
+        carBrands.forEach(brand => {
+            const option = document.createElement('option');
+            option.value = brand;
+            option.textContent = brand;
+            carBrandDropdown.appendChild(option);
+        });
+
+        // Event listener for the change event on carBrand dropdown
+        carBrandDropdown.addEventListener('change', async function () {
             const selectedBrand = this.value;
 
             // Fetch categories for the selected brand using an AJAX request
@@ -84,6 +115,26 @@
                 option.textContent = year.year;
                 carYearDropdown.appendChild(option);
             });
+            document.getElementById('searchButton').addEventListener('click', function () {
+                const selectedBrand = document.getElementById('carBrand').value;
+                const selectedCategory = document.getElementById('carCategory').value;
+                const selectedModel = document.getElementById('carModel').value;
+                const selectedYear = document.getElementById('carYear').value;
+
+                // You can perform the search based on the selected options here
+                console.log('Search:', selectedBrand, selectedCategory, selectedModel, selectedYear);
+            });
+            document.getElementById('searchButton').addEventListener('click', function () {
+                const selectedBrand = document.getElementById('carBrand').value;
+                const selectedCategory = document.getElementById('carCategory').value;
+                const selectedModel = document.getElementById('carModel').value;
+                const selectedYear = document.getElementById('carYear').value;
+
+                // Redirect to car details page with selected information
+                window.location.href = `bmw.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+            });
+
+
         });
     </script>
 </body>
