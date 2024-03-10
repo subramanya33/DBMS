@@ -18,8 +18,6 @@ const app = express();
 app.get('/', async (req, res) => {
   try {
     const [brandResults] = await pool.execute('SELECT DISTINCT car_name FROM cars');
-    const [categoryResults] = await pool.execute('SELECT DISTINCT category FROM cars');
-    const [yearResults] = await pool.execute('SELECT DISTINCT year FROM cars');
 
     res.send(`
     <!DOCTYPE html>
@@ -29,34 +27,17 @@ app.get('/', async (req, res) => {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Car Brands</title>
           <link rel="stylesheet" href="index.css">
-        </head>
         <body>
           <h1>Car Brands</h1>
-          <label for="carBrand">Select Brand:</label>
           <select id="carBrand">
             ${brandResults.map(brand => `<option value="${brand.car_name}">${brand.car_name}</option>`).join('')}
           </select>
-
-          <label for="carCategory">Select Category:</label>
-          <select id="carCategory">
-            ${categoryResults.map(category => `<option value="${category.category}">${category.category}</option>`).join('')}
-          </select>
-
-          <label for="carYear">Select Year:</label>
-          <select id="carYear">
-            ${yearResults.map(year => `<option value="${year.year}">${year.year}</option>`).join('')}
-          </select>
-
           <h2>Car Models</h2>
           <select id="carModel"></select>
-
           <script>
             document.getElementById('carBrand').addEventListener('change', function () {
               const selectedBrand = this.value;
-              const selectedCategory = document.getElementById('carCategory').value;
-              const selectedYear = document.getElementById('carYear').value;
-
-              fetch(`/ models ? brand = ${ selectedBrand } & category=${ selectedCategory } & year=${ selectedYear }`)
+              fetch('/models?brand=' + selectedBrand)
                 .then(response => response.json())
                 .then(models => {
                   const carModelDropdown = document.getElementById('carModel');
@@ -81,14 +62,9 @@ app.get('/', async (req, res) => {
 
 app.get('/models', async (req, res) => {
   const selectedBrand = req.query.brand;
-  const selectedCategory = req.query.category;
-  const selectedYear = req.query.year;
 
   try {
-    const [modelResults] = await pool.execute(
-      'SELECT DISTINCT model FROM cars WHERE car_name = ? AND category = ? AND year = ?',
-      [selectedBrand, selectedCategory, selectedYear]
-    );
+    const [modelResults] = await pool.execute('SELECT DISTINCT model FROM cars WHERE car_name = ?', [selectedBrand]);
 
     res.json(modelResults);
   } catch (error) {
