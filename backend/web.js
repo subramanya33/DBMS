@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve your static files like CSS from a directory named 'public'
-app.use(express.static('public'));
+app.use(express.static('../frontend'));
 
 app.get('/', async (req, res) => {
   try {
@@ -34,7 +34,7 @@ app.get('/', async (req, res) => {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Car Selection</title>
-          <link rel="stylesheet" href="index.css">
+          <link rel="stylesheet" href="frontend/index.css">
         </head>
         <body>
           <h1>Car Selection</h1>
