@@ -9,9 +9,30 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="bmw.css">
     <style>
-        /* Override the background property to remove it */
         body {
             background: none;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-links {
+            /* Add any styles for header links */
+        }
+
+        .car-details-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .car-details {
+            /* Add any specific styles for car details */
+        }
+
+        .ratings,
+        .pros-cons {
+            /* Add any specific styles for ratings and pros-cons sections */
         }
 
         /* Add any other specific styles for elements in bmw.html */
@@ -24,44 +45,49 @@
         <a href="#" class="header-link">Login</a>
         <a href="#" class="header-link">About</a>
     </div>
-    <h1>Car Details</h1>
+    <div class="car-details-container">
+        <h1 id="carName">Car Details</h1>
 
-    <div class="car-details">
-        <img src="bmwx.jpg" alt="Car Image">
+        <div class="car-details">
+            <img src="bmwx.jpg" alt="Car Image">
 
-        <div class="ratings">
-            <h2>Ratings:</h2>
-            <!-- Add your rating details here -->
-            <p>Performance: 5/5</p>
-            <p>Safety: 4/5</p>
-            <p>Comfort: 5/5</p>
-        </div>
+            <div class="ratings">
+                <h2>Ratings:</h2>
+                <!-- Add your rating details here -->
+                <p>Performance: 5/5</p>
+                <p>Safety: 4/5</p>
+                <p>Comfort: 5/5</p>
+            </div>
 
-        <div class="pros-cons">
-            <h2>Pros and Cons:</h2>
-            <table>
-                <tr>
-                    <th>Pros</th>
-                    <th>Cons</th>
-                </tr>
-                <tr>
-                    <td>Powerful engine</td>
-                    <td>High maintenance cost</td>
-                </tr>
-                <tr>
-                    <td>Luxurious interior</td>
-                    <td>Limited cargo space</td>
-                </tr>
-                <tr>
-                    <td>Advanced safety features</td>
-                    <td></td>
-                </tr>
-            </table>
+            <div class="pros-cons">
+                <h2>Pros and Cons:</h2>
+                <table>
+                    <tr>
+                        <th>Pros</th>
+                        <th>Cons</th>
+                    </tr>
+                    <tr>
+                        <td>Powerful engine</td>
+                        <td>High maintenance cost</td>
+                    </tr>
+                    <tr>
+                        <td>Luxurious interior</td>
+                        <td>Limited cargo space</td>
+                    </tr>
+                    <tr>
+                        <td>Advanced safety features</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 
     <script>
         // You can add additional JavaScript logic here if needed
+        // For example, dynamically update the car name based on the search term
+        const searchTerm = "BMW X"; // Replace with your actual search term
+        document.getElementById("carName").innerText = searchTerm + " Details";
     </script>
 </body>
 
