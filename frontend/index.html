@@ -115,26 +115,25 @@
                 option.textContent = year.year;
                 carYearDropdown.appendChild(option);
             });
-            document.getElementById('searchButton').addEventListener('click', function () {
-                const selectedBrand = document.getElementById('carBrand').value;
-                const selectedCategory = document.getElementById('carCategory').value;
-                const selectedModel = document.getElementById('carModel').value;
-                const selectedYear = document.getElementById('carYear').value;
+        });
 
-                // You can perform the search based on the selected options here
-                console.log('Search:', selectedBrand, selectedCategory, selectedModel, selectedYear);
-            });
-            document.getElementById('searchButton').addEventListener('click', function () {
-                const selectedBrand = document.getElementById('carBrand').value;
-                const selectedCategory = document.getElementById('carCategory').value;
-                const selectedModel = document.getElementById('carModel').value;
-                const selectedYear = document.getElementById('carYear').value;
+        document.getElementById('searchButton').addEventListener('click', function () {
+            const selectedBrand = document.getElementById('carBrand').value;
+            const selectedCategory = document.getElementById('carCategory').value;
+            const selectedModel = document.getElementById('carModel').value;
+            const selectedYear = document.getElementById('carYear').value;
 
-                // Redirect to car details page with selected information
+            // Check conditions for redirection based on selected options
+            if (selectedBrand === 'Audi' && selectedModel === 'A4' /* Add more conditions if needed */) {
+                window.location.href = `audia4.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+            } else if (selectedBrand === 'BMW' /* Add conditions for BMW */) {
                 window.location.href = `bmw.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
-            });
-
-
+            } else if (selectedBrand === 'Mercedes' /* Add conditions for Mercedes */) {
+                window.location.href = `mercedes_page.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+            } else {
+                // Handle other cases or provide a default redirect
+                alert('Car details page not available for the selected options.');
+            }
         });
     </script>
 </body>

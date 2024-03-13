@@ -1,0 +1,110 @@
+/* car_details.css */
+body {
+    background: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'CustomFont', sans-serif;
+    color: hsl(0, 0%, 0%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.header-links {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.header-link {
+    margin-left: 10px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.car-details-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.car-details {
+    /* Add any specific styles for car details */
+}
+
+.ratings,
+.pros-cons {
+    /* Add any specific styles for ratings and pros-cons sections */
+}
+
+h1,
+h2,
+h3 {
+    color: #dbd2d2;
+}
+
+.car-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 20px 0;
+}
+
+.pros-cons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    /* Adjust the max-width as needed */
+}
+
+.pros,
+.cons {
+    flex: 1;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+/* Additional styling to override the background */
+body.audi-page {
+    background: #ffffff;
+    /* Set the background color to white */
+}
+
+/* Additional styling for Pros and Cons */
+.pros-cons {
+    font-family: 'AnotherFont', sans-serif;
+    /* Add your desired font-family */
+}
+
+.pros,
+.cons {
+    color: #000000;
+    /* Set the font color to black */
+}
+
+.pros table,
+.cons table {
+    width: 100%;
+}
+
+.pros th,
+.cons th {
+    text-align: left;
+    padding: 8px;
+    background-color: #f2f2f2;
+    /* Add a background color for table headers */
+}
+
+.pros td,
+.cons td {
+    padding: 8px;
+}
