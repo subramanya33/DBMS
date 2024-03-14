@@ -11,7 +11,8 @@
 <body>
     <div class="header-links">
         <a href="index.html" class="header-link">Home</a>
-        <a href="#" class="header-link">Login</a>
+        <!-- Add an id attribute to the login link -->
+        <a href="#" class="header-link" id="loginLink">Login</a>
         <a href="#" class="header-link">About</a>
     </div>
     <h1>Car Selection</h1>
@@ -134,6 +135,12 @@
                 // Handle other cases or provide a default redirect
                 alert('Car details page not available for the selected options.');
             }
+        });
+
+        // Event listener for the login link
+        document.getElementById('loginLink').addEventListener('click', function () {
+            // Redirect to login.html
+            window.location.href = 'login.html';
         });
     </script>
 </body>

@@ -1,30 +1,53 @@
-< !DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Car Details</title><link rel="stylesheet" href="bmw.css"><style>body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* car_details.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'CustomFont', sans-serif;
+    background: url('back.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #c5d3d3;
 }
 
-.car-details {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
+.header-links {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
-.pros-cons table {
+.header-link {
+    margin-left: 10px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+    color: #dbd2d2;
+}
+
+.car-image {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    max-width: 600px;
+    height: auto;
+    margin: 20px 0;
 }
 
-.pros-cons th,
-.pros-cons td {
-    padding: 8px;
-    border: 1px solid #ddd;
+.pros-cons {
+    display: flex;
+    justify-content: space-between;
 }
 
-.pros-cons th {
-    background-color: #f2f2f2;
+.pros,
+.cons {
+    flex: 1;
 }
 
-</style></head><body><div class="header-links"><a href="index.html" class="header-link">Home</a><a href="#" class="header-link">Login</a><a href="#" class="header-link">About</a></div><h1>Car Details</h1><div class="car-details"><img src="bmw.jpg" alt="Car Image"><div class="ratings"><h2>Ratings:</h2>< !-- Add your rating details here --><p>Performance: 5/5</p><p>Safety: 4/5</p><p>Comfort: 5/5</p></div><div class="pros-cons"><h2>Pros and Cons:</h2><table><tr><th>Pros</th><th>Cons</th></tr><tr><td>Powerful engine</td><td>High maintenance cost</td></tr><tr><td>Luxurious interior</td><td>Limited cargo space</td></tr><tr><td>Advanced safety features</td><td></td></tr></table></div></div><script> // You can add additional JavaScript logic here if needed
-</script></body></html>
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}

@@ -22,6 +22,9 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Parse JSON bodies
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use(cors());
 
 // Serve your static files like CSS from a directory named 'public'
 app.use(express.static('../frontend'));
@@ -74,6 +77,34 @@ app.get('/years', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+app.post('/process_registration', async (req, res) => {
+  const { name, contact, email, add, passw, gender, rc_no } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+
+    // Check if the user already exists
+    const [userExists] = await connection.execute('SELECT COUNT(*) AS count FROM users WHERE email = ? OR contact = ?', [email, contact]);
+
+    if (userExists[0].count > 0) {
+      // User already exists
+      res.status(400).send('User already exists with this email or phone number!');
+    } else {
+      // Insert the new user into the database
+      await connection.query('INSERT INTO users (name, contact, email, address, password, gender, rc_no) VALUES (?, ?, ?, ?, ?, ?, ?)', [name, contact, email, add, passw, gender, rc_no]);
+      connection.release();
+
+      // Registration successful
+      res.status(200).send('Registration successful!');
+    }
+  } catch (error) {
+    console.error('Error processing registration:', error.message);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+
 
 const PORT = 5000;
 app.listen(PORT, () => {
