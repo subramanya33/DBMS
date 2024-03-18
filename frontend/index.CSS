@@ -34,6 +34,14 @@ header {
     text-decoration: none;
 }
 
+.header-link {
+    margin-left: 10px;
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 20px;
+    /* Adjust the font size as needed */
+}
+
 nav ul {
     list-style: none;
     padding: 0;
@@ -97,6 +105,44 @@ label {
     display: block;
 }
 
+input-container {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 250px;
+    /* Adjust the width to match the width of the select box */
+}
+
+/* Add this to center the labels within the input containers */
+.input-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    /* Adjust label font size */
+}
+
+/* Adjust the width of select elements */
+select {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 80px;
+    /* Adjust the font size */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #7c7878;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('right.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    /* Adjust the width to match the input container */
+    width: 20%;
+    /* Set the width to 100% to match the container */
+}
+
 select {
     display: block;
     /* Display the select element as block */
@@ -121,14 +167,28 @@ select {
     background-position: right center;
 }
 
+.input-container {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    /* Add margin-top to move it down */
+    max-height: 300px;
+    /* Set a maximum height */
+    overflow-y: auto;
+    /* Enable vertical scrollbar if needed */
+    /* Add some spacing between input containers */
+}
+
+
+
 .input-container button {
     margin-top: 10px;
-    font-size: x-large;
+    font-size: xx-large;
 }
 
 .input-container {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     /* Add some spacing between input containers */
 }
 
@@ -136,7 +196,38 @@ select {
 .input-container label {
     display: block;
     margin-bottom: 5px;
+    font-size: xx-large;
 }
+
+.input-container {
+    text-align: center;
+    margin-bottom: 20px;
+    /* Remove margin-top */
+    max-height: 300px;
+    /* You may adjust this height as needed */
+    overflow-y: auto;
+    /* Enable vertical scrollbar if needed */
+}
+
+/* Add margin at the bottom of the input container to create space */
+.input-container:last-child {
+    margin-bottom: 50px;
+    /* Adjust as needed */
+}
+
+
+.input-container {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    /* Add margin-top to move it down */
+    max-height: 300px;
+    /* Set a maximum height */
+    overflow-y: auto;
+    /* Enable vertical scrollbar if needed */
+    /* Add some spacing between input containers */
+}
+
 
 select:hover,
 select:focus {

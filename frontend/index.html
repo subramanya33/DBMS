@@ -12,37 +12,41 @@
     <div class="header-links">
         <a href="index.html" class="header-link">Home</a>
         <!-- Add an id attribute to the login link -->
-        <a href="#" class="header-link" id="loginLink">Login</a>
+        <a href="login.html" class="header-link" id="loginLink">Login</a>
+        <a href="#" class="header-link" id="logoutLink" style="display: none;">Logout</a>
         <a href="#" class="header-link">About</a>
         <a href="admin.html" class="header-link">Admin</a>
     </div>
-    <h1>Car Selection</h1>
+
     <div class="input-container">
-        <label for="carBrand">Select Brand:</label>
+        <label for="carBrand">Select Brand</label>
         <select id="carBrand"></select>
     </div>
 
     <div class="input-container">
-        <label for="carCategory">Select Category:</label>
+        <label for="carCategory">Select Category</label>
         <select id="carCategory"></select>
     </div>
 
     <div class="input-container">
-        <label for="carModel">Select Model:</label>
+        <label for="carModel">Select Model</label>
         <select id="carModel"></select>
     </div>
 
     <div class="input-container">
-        <label for="carYear">Select Year:</label>
+        <label for="carYear">Select Year</label>
         <select id="carYear"></select>
     </div>
     <div class="input-container">
         <!-- Add a search button with the same font style -->
         <button id="searchButton">Go</button>
+        <!-- Add a button for reviews -->
+        <button id="reviewButton">Reviews</button>
     </div>
+    
     <script>
         // Array of car brands
-        const carBrands = ['Audi', 'BMW', 'Mercedes'];
+        const carBrands = ['', 'Audi', 'BMW', 'Mercedes'];
 
         // Select the carBrand dropdown
         const carBrandDropdown = document.getElementById('carBrand');
@@ -142,10 +146,46 @@
             }
         });
 
-        // Event listener for the login link
-        document.getElementById('loginLink').addEventListener('click', function () {
-            // Redirect to login.html
-            window.location.href = 'login.html';
+        // Event listener for the review button
+        document.getElementById('reviewButton').addEventListener('click', function () {
+            const selectedBrand = document.getElementById('carBrand').value;
+            const selectedCategory = document.getElementById('carCategory').value;
+            const selectedModel = document.getElementById('carModel').value;
+            const selectedYear = document.getElementById('carYear').value;
+
+            // Check if any car details are selected before redirecting to the reviews page
+            if (selectedBrand && selectedCategory && selectedModel && selectedYear) {
+                // Redirect to reviews page with selected car details
+                window.location.href = 'reviews.html?brand=' + selectedBrand +
+                    '&category=' + selectedCategory +
+                    '&model=' + selectedModel +
+                    '&year=' + selectedYear;
+            } else {
+                // Alert the user to select a car first
+                alert('Please select a car before viewing reviews.');
+            }
+        });
+
+        // Check if the user is already logged in
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        const loginLink = document.getElementById('loginLink');
+        const logoutLink = document.getElementById('logoutLink');
+
+        if (loggedInUser) {
+            // If user is logged in, hide the login link and show the logout link
+            loginLink.style.display = 'none';
+            logoutLink.style.display = 'inline';
+        } else {
+            // If user is not logged in, show the login link and hide the logout link
+            loginLink.style.display = 'inline';
+            logoutLink.style.display = 'none';
+        }
+
+        // Event listener for the logout link
+        logoutLink.addEventListener('click', function () {
+            // Clear the logged-in user from local storage and reload the page
+            localStorage.removeItem('loggedInUser');
+            location.reload();
         });
     </script>
 </body>

@@ -1,5 +1,4 @@
-/* car_details.css */
-body {
+.body {
     margin: 0;
     padding: 0;
     font-family: 'CustomFont', sans-serif;
@@ -8,29 +7,28 @@ body {
     color: #c5d3d3;
 }
 
-.header-links {
+.header-links,
+.reviews-container {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    color: #007BFF;
 }
 
-.header-link {
+.header-link,
+.reviews-link {
     margin-left: 10px;
-    color: #007BFF;
     text-decoration: none;
 }
 
 h1,
 h2,
 h3 {
+    color: #dbd2d2;
+}
+
+table {
     color: black;
 }
-p{
-    color: black;
-}
-table{
-    color: black;
-}
+
 .car-image {
     width: 100%;
     max-width: 600px;
@@ -38,14 +36,67 @@ table{
     margin: 20px 0;
 }
 
-.pros-cons {
-    display: flex;
-    justify-content: space-between;
+.car-details {
+    text-align: center;
 }
 
-.pros,
-.cons {
-    flex: 1;
+/* Add this CSS rule to bmw.css */
+.car-details p {
+    color: black;
+    /* Set description font color to black */
+}
+
+#carName {
+    color: black;
+}
+
+.car-details .description h2 {
+    color: black;
+}
+
+.car-details .description p {
+    color: black;
+}
+
+.car-details .ratings h2 {
+    color: black;
+}
+
+.car-details .ratings p {
+    color: black;
+}
+
+.car-details .pros-cons table {
+    margin: 0 auto;
+}
+
+.car-details .pros-cons table th,
+.car-details .pros-cons table td {
+    color: black;
+}
+
+.pros-cons th {
+    background-color: #007BFF;
+    color: white;
+}
+
+.pros-cons td {
+    border: 1px solid #ddd;
+}
+
+.pros-cons th:first-child,
+.pros-cons td:first-child {
+    border-left: none;
+}
+
+.pros-cons th:last-child,
+.pros-cons td:last-child {
+    border-right: none;
+}
+
+.pros-cons tr:last-child th,
+.pros-cons tr:last-child td {
+    border-bottom: none;
 }
 
 ul {

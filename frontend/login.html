@@ -4,34 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login form</title>
+    <title>Login Form</title>
     <link rel="stylesheet" href="login.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="index.css">
+    <style>
+        .admin-link {
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 
-<body style="font-family: 'CustomFont', sans-serif">
-    <div class="header-links" >
+<body>
+    <div class="header-links">
         <a href="index.html" class="header-link">Home</a>
 
     </div>
     <div class="wrapper">
-        <form action="">
+        <form id="loginForm" action="/login" method="POST">
             <h1 style="color: #fff;">LOGIN</h1>
             <div class="input-box">
-                <input type="text" placeholder="user name" required>
+                <input type="text" name="username" placeholder="Username" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="password" required>
+                <input type="password" name="password" placeholder="Password" required>
                 <i class='bx bxs-lock'></i>
             </div>
-            <button type="submit" class="btn">Login</button>
-            <div class="register-link">
+            <button type="submit" class="btn" id="loginButton">Login</button>
+            <div class="register-link" id="registerLink">
                 <p>Don't have an account?<a href="reg.html">Register</a></p>
             </div>
         </form>
+        <p class="admin-link" id="adminLink">Admin? <a href="#" onclick="showAdminLogin()">Admin Login</a></p>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const username = document.getElementsByName('username')[0].value.trim();
+            const password = document.getElementsByName('password')[0].value.trim();
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Login successful'); // Display popup message
+                    localStorage.setItem('loggedInUser', JSON.stringify(data.user));
+                    window.location.href = 'index.html'; // Redirect to home page
+                } else {
+                    alert(data.error); // Display login error
+                }
+            } catch (error) {
+                console.error('Error during login:', error.message);
+                alert('An error occurred during login. Please try again.');
+            }
+        });
+
+        function showAdminLogin() {
+            // Change the form action and register link
+            document.getElementById('loginForm').action = "/admin_login";
+            document.getElementById('registerLink').style.display = "none";
+            document.getElementById('adminLink').style.display = "none";
+        }
+
+        // Check if user is logged in and update UI accordingly
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (loggedInUser) {
+            // If user is logged in, hide the login link and display logout button
+            document.getElementById('loginLink').style.display = 'none';
+            const headerLinks = document.querySelector('.header-links');
+            const logoutButton = document.createElement('button');
+            logoutButton.textContent = 'Logout';
+            logoutButton.addEventListener('click', function () {
+                localStorage.removeItem('loggedInUser');
+                window.location.reload(); // Reload the page to reflect logout state
+            });
+            headerLinks.appendChild(logoutButton);
+        }
+    </script>
+
 </body>
 
 </html>
