@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="audia4.css">
+    <style>
+        /* Common styles from the previous file */
+    </style>
+</head>
+
+<body>
+    <div class="header-links">
+        <a href="index.html" class="header-link">Home</a>
+        <a href="#" class="header-link">Login</a>
+        <a href="#" class="header-link">About</a>
+    </div>
+    <div class="car-details-container">
+        <h1 id="carName">Car Details</h1>
+
+        <div class="car-details">
+            <img src="photos/Q3.jpeg" alt="Car Image">
+
+            <div class="ratings">
+                <h2>Ratings:</h2>
+                <p>Performance: 3/5</p>
+                <p>Safety: 5/5</p>
+                <p>Comfort: 4/5</p>
+            </div>
+
+            <div class="pros-cons">
+
+                <table>
+                    <tr>
+                        <th>Pros</th>
+                        <th>Cons</th>
+                    </tr>
+                    <tr>
+                        <td>Incredibly fun-to-drive 2.0L</td>
+                        <td>Less powerful engine compared to rivals</td>
+                    </tr>
+                    <tr>
+                        <td>Good road manners</td>
+                        <td>Just two variants</td>
+                    </tr>
+                    <tr>
+                        <td>Increased cabin space</td>
+                        <td>Pricey! </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchTerm = "Audi Q3";
+        document.getElementById("carName").innerText = searchTerm + " Details";
+    </script>
+</body>
+
+</html>

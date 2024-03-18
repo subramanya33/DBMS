@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details</title>
+    <!-- Link to the same stylesheet used in index.css -->
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="bmw.css">
+    <style>
+        body {
+            background: none;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-links {
+            /* Add any styles for header links */
+        }
+
+        .car-details-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .car-details {
+            /* Add any specific styles for car details */
+        }
+
+        .ratings,
+        .pros-cons {
+            /* Add any specific styles for ratings and pros-cons sections */
+        }
+
+        /* Add any other specific styles for elements in bmw.html */
+    </style>
+</head>
+
+<body>
+    <div class="header-links">
+        <a href="index.html" class="header-link">Home</a>
+        <a href="#" class="header-link">Login</a>
+        <a href="#" class="header-link">About</a>
+    </div>
+    <div class="car-details-container">
+        <h1 id="carName">Car Details</h1>
+
+        <div class="car-details">
+            <img src="photos/3ser.jpeg" alt="Car Image">
+
+            <div class="ratings">
+                <h2>Ratings:</h2>
+                <!-- Add your rating details here -->
+                <p>Performance: 4/5</p>
+                <p>Safety: 4/5</p>
+                <p>Comfort: 5/5</p>
+            </div>
+
+            <div class="pros-cons">
+                <h2>Pros and Cons:</h2>
+                <table>
+                    <tr>
+                        <th>Pros</th>
+                        <th>Cons</th>
+                    </tr>
+                    <tr>
+                        <td>Superb Engines</td>
+                        <td>Missing Flashy Features</td>
+                    </tr>
+                    <tr>
+                        <td>Sporty Elegance Inside</td>
+                        <td>Misses Rear Seat Focus</td>
+                    </tr>
+                    <tr>
+                        <td>Brilliant Dynamics</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // You can add additional JavaScript logic here if needed
+        // For example, dynamically update the car name based on the search term
+        const searchTerm = "BMW 3 SERIES"; // Replace with your actual search term
+        document.getElementById("carName").innerText = searchTerm + " Details";
+    </script>
+</body>
+
+</html>

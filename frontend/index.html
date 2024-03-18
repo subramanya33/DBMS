@@ -14,6 +14,7 @@
         <!-- Add an id attribute to the login link -->
         <a href="#" class="header-link" id="loginLink">Login</a>
         <a href="#" class="header-link">About</a>
+        <a href="admin.html" class="header-link">Admin</a>
     </div>
     <h1>Car Selection</h1>
     <div class="input-container">
@@ -127,10 +128,14 @@
             // Check conditions for redirection based on selected options
             if (selectedBrand === 'Audi' && selectedModel === 'A4' /* Add more conditions if needed */) {
                 window.location.href = `audia4.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
-            } else if (selectedBrand === 'BMW' /* Add conditions for BMW */) {
+            } if (selectedBrand === 'Audi' && selectedModel === 'Q3' /* Add more conditions if needed */) {
+                window.location.href = `audiq3.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+            }else if (selectedBrand === 'BMW' && selectedModel==='X5' /* Add conditions for BMW */) {
                 window.location.href = `bmw.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
-            } else if (selectedBrand === 'Mercedes' /* Add conditions for Mercedes */) {
-                window.location.href = `mercedes_page.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+            }else if (selectedBrand === 'BMW' && selectedModel=== '3 SERIES') {
+                window.location.href = `bmw3ser.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+            } else if (selectedBrand === 'Mercedes' && selectedModel=== 'A-Class' /* Add conditions for Mercedes */) {
+                window.location.href = `mercAClass.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
             } else {
                 // Handle other cases or provide a default redirect
                 alert('Car details page not available for the selected options.');
