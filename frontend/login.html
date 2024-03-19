@@ -32,12 +32,12 @@
                 <input type="password" name="password" placeholder="Password" required>
                 <i class='bx bxs-lock'></i>
             </div>
-            <button type="submit" class="btn" id="loginButton">Login</button>
+            <button type="submit" class="btn" id="loginButton"> Login</button>
             <div class="register-link" id="registerLink">
                 <p>Don't have an account?<a href="reg.html">Register</a></p>
             </div>
         </form>
-        <p class="admin-link" id="adminLink">Admin? <a href="#" onclick="showAdminLogin()">Admin Login</a></p>
+        <p class="admin-link" id="adminLink">Admin? <a href="#" onclick="redirectToAdmin()">Admin Login</a></p>
     </div>
 
     <script>
@@ -71,19 +71,8 @@
             }
         });
 
-        // Check if user is logged in and update UI accordingly
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        if (loggedInUser) {
-            // If user is logged in, hide the login link and display logout button
-            document.getElementById('loginLink').style.display = 'none';
-            const headerLinks = document.querySelector('.header-links');
-            const logoutButton = document.createElement('button');
-            logoutButton.textContent = 'Logout';
-            logoutButton.addEventListener('click', function () {
-                localStorage.removeItem('loggedInUser');
-                window.location.reload(); // Reload the page to reflect logout state
-            });
-            headerLinks.appendChild(logoutButton);
+        function redirectToAdmin() {
+            window.location.href = 'adminlogin.html';
         }
     </script>
 
