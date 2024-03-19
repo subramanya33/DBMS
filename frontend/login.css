@@ -62,13 +62,13 @@ body {
 }
 
 .wrapper .btn {
-    width: 100%;
+    width: 80%;
     /* Make the button full width */
     position: absolute;
     /* Position it absolutely */
     bottom: -25px;
     /* Adjust the position as needed */
-    left: 50%;
+    left: 57%;
     /* Move it to the center horizontally */
     transform: translateX(-50%);
     /* Center it exactly */
