@@ -146,12 +146,13 @@ app.post('/admin-login', async (req, res) => {
     }
 
     // Perform database query to check if the user is an admin
-    const [user] = await pool.execute('SELECT * FROM users WHERE name = ? AND password = ? AND is_admin = 1', [username, password]);
+    const [admin] = await pool.execute('SELECT * FROM admins WHERE username = ? AND password = ?', [username, password]);
 
-    if (user.length > 0) {
+    if (admin.length > 0) {
       // User is an admin
       // Return success response
-      return res.status(200).json({ message: 'Admin login successful', admin: user[0] });
+      return res.status(200).json({ message: 'Admin login successful', admin: admin[0] });
+
     } else {
       // User is not an admin or credentials are incorrect
       return res.status(401).json({ error: 'Invalid admin' });
@@ -161,6 +162,7 @@ app.post('/admin-login', async (req, res) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 
 app.get('/reviews/:carId', async (req, res) => {
@@ -210,6 +212,55 @@ app.post('/submit-review', async (req, res) => {
 
 
 
+
+//ADMINLEVEL CODES
+app.get('/data', async (req, res) => {
+  const entity = req.query.entity;
+  try {
+    let tableData;
+    switch (entity) {
+      case 'users':
+        const [userResults] = await pool.query('SELECT * FROM users');
+        tableData = formatUserTable(userResults);
+        break;
+      case 'cars':
+        const [carResults] = await pool.query('SELECT * FROM cars');
+        tableData = formatCarTable(carResults);
+        break;
+      case 'categories':
+        const [categoryResults] = await pool.query('SELECT * FROM category');
+        tableData = formatCategoryTable(categoryResults);
+        break;
+      case 'reviews':
+        const [reviewResults] = await pool.query('SELECT * FROM reviews');
+        tableData = formatReviewTable(reviewResults);
+        break;
+      default:
+        return res.status(400).send('Invalid entity specified');
+    }
+    res.json(tableData);
+  } catch (error) {
+    console.error('Error fetching data:', error.message);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// Helper functions to format data into table-like structure
+function formatUserTable(data) {
+  return { table: 'users', data };
+}
+
+function formatCarTable(data) {
+  return { table: 'cars', data };
+}
+
+function formatCategoryTable(data) {
+  return { table: 'categories', data };
+}
+
+function formatReviewTable(data) {
+  return { table: 'reviews', data };
+}
 
 
 

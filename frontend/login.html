@@ -20,7 +20,6 @@
 <body>
     <div class="header-links">
         <a href="index.html" class="header-link">Home</a>
-
     </div>
     <div class="wrapper">
         <form id="loginForm" action="/login" method="POST">
@@ -38,7 +37,7 @@
                 <p>Don't have an account?<a href="reg.html">Register</a></p>
             </div>
         </form>
-        <p class="admin-link" id="adminLink">Admin? <a href="admin.html" onclick="showAdminLogin()">Admin Login</a></p>
+        <p class="admin-link" id="adminLink">Admin? <a href="#" onclick="showAdminLogin()">Admin Login</a></p>
     </div>
 
     <script>
@@ -71,13 +70,6 @@
                 alert('An error occurred during login. Please try again.');
             }
         });
-
-        function showAdminLogin() {
-            // Change the form action and register link
-            document.getElementById('loginForm').action = "/admin_login";
-            document.getElementById('registerLink').style.display = "none";
-            document.getElementById('adminLink').style.display = "none";
-        }
 
         // Check if user is logged in and update UI accordingly
         const loggedInUser = localStorage.getItem('loggedInUser');

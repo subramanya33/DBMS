@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .admin-link {
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-links">
+        <a href="index.html" class="header-link">Home</a>
+    </div>
+    <div class="wrapper">
+        <form id="adminLoginForm" action="/admin-login" method="POST">
+            <h1 style="color: #fff;">ADMIN LOGIN</h1>
+            <div class="input-box">
+                <input type="text" name="adminUsername" placeholder="Admin Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" name="adminPassword" placeholder="Admin Password" required>
+                <i class='bx bxs-lock'></i>
+            </div>
+            <button type="submit" class="btn" id="adminLoginButton">Login</button>
+        </form>
+        <p class="admin-link" id="adminLink">Back to <a href="login.html">User Login</a></p>
+    </div>
+
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const username = document.getElementsByName('adminUsername')[0].value.trim();
+            const password = document.getElementsByName('adminPassword')[0].value.trim();
+
+            try {
+                const response = await fetch('/admin-login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Admin login successful'); // Display popup message
+                    localStorage.setItem('loggedInAdmin', JSON.stringify(data.admin));
+                    window.location.href = 'adminret.html'; // Redirect to adminret.html page
+                } else {
+                    alert(data.error); // Display login error
+                }
+            } catch (error) {
+                console.error('Error during admin login:', error.message);
+                alert('An error occurred during admin login. Please try again.');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

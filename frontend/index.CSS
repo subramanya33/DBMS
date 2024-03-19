@@ -5,6 +5,106 @@
     /* Specify the font family and the path to the font file */
 }
 
+.input-container {
+    position: relative;
+}
+
+.dropdown-button {
+    /* index.css */
+
+    /* Reset margin and padding for body */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'CustomFont', sans-serif;
+        background: url('photos/back.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    /* Adjust header alignment */
+    .header-links {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        /* Adjusted left alignment */
+    }
+
+    /* Reset text alignment for labels */
+    label {
+        margin-right: 10px;
+        font-size: x-large;
+        color: #dbd2d2;
+        display: block;
+        text-align: left;
+        /* Align labels to the left */
+    }
+
+    /* Reset text alignment for input containers */
+    .input-container {
+        text-align: left;
+        /* Align input containers to the left */
+        margin-bottom: 20px;
+        margin-top: 50px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    /* Adjust button alignment */
+    .input-container button {
+        margin-top: 10px;
+        font-size: xx-large;
+    }
+
+    /* Adjust spacing between input containers */
+    .input-container:last-child {
+        margin-bottom: 50px;
+    }
+
+    /* Adjust alignment for the dropdown button */
+    .dropdown-button {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+    }
+
+    /* Adjust hover effect for the dropdown button */
+    .dropdown-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Adjust alignment for the header */
+    header {
+        position: relative;
+        top: 20px;
+        background-color: rgba(225, 214, 214, 0);
+        padding: 10px;
+        margin: 0;
+        text-align: left;
+        /* Align header to the left */
+    }
+
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    /* Adjust as needed */
+    transform: translateY(-50%);
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.dropdown-button:hover {
+    background-color: #0056b3;
+}
+
 body {
     margin: 0;
     padding: 0;
