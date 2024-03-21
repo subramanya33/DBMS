@@ -52,14 +52,53 @@
     <!-- Content -->
     <!-- You can place your content here. For example, tables displaying user details, car details, reviews, etc. -->
     <div id="content"></div>
+
   </div>
+
   <script>
+    // Function to remove an item based on the current context
+    function removeItem(entity, itemId) {
+      let confirmation = confirm(`Are you sure you want to remove this ${entity}?`);
+      if (confirmation) {
+        // Send a DELETE request to the appropriate endpoint
+        fetch(`/remove/${entity}?id=${itemId}`, {
+          method: 'DELETE'
+        })
+          .then(response => {
+            if (response.ok) {
+              // If removing item is successful, reload the data
+              getData(entity);
+            } else {
+              throw new Error(`Failed to remove ${entity}`);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      }
+    }
+
+
+    // Function to fetch data
     function getData(entity) {
       fetch(`/data?entity=${entity}`)
         .then(response => response.json())
         .then(data => {
-          // Display data here, for example:
-          document.getElementById('content').innerHTML = JSON.stringify(data);
+          // Display data in a table
+          let tableHtml = '<table class="table table-striped"><thead><tr>';
+          Object.keys(data.data[0]).forEach(key => {
+            tableHtml += `<th style="color: blue;">${key}</th>`;
+          });
+          tableHtml += '<th>Action</th></tr></thead><tbody>';
+
+          data.data.forEach(row => {
+            tableHtml += '<tr>';
+            Object.entries(row).forEach(([key, value]) => {
+              tableHtml += `<td style="color: blue;">${value}</td>`;
+            });
+            tableHtml += `<td><button class="btn btn-danger" onclick="removeItem('${entity}', '${row.id}')">Remove</button></td>`;
+            tableHtml += '</tr>';
+          });
+          tableHtml += '</tbody></table>';
+          document.getElementById('content').innerHTML = tableHtml;
         })
         .catch(error => console.error('Error:', error));
     }

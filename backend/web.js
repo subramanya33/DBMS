@@ -261,6 +261,51 @@ function formatCategoryTable(data) {
 function formatReviewTable(data) {
   return { table: 'reviews', data };
 }
+app.delete('/remove/:entity', async (req, res) => {
+  const { entity } = req.params;
+  const itemId = req.query.id; // Assuming the item ID is passed as a query parameter
+
+  try {
+    let tableName;
+    let idColumnName;
+
+    // Determine the table name and the primary key column based on the entity
+    switch (entity) {
+      case 'users':
+        tableName = 'users';
+        idColumnName = 'id'; // Adjust this based on your actual primary key column name for users
+        break;
+      case 'cars':
+        tableName = 'cars';
+        idColumnName = 'id'; // Adjust this based on your actual primary key column name for cars
+        break;
+      case 'categories':
+        tableName = 'categories';
+        idColumnName = 'id'; // Adjust this based on your actual primary key column name for categories
+        break;
+      case 'reviews':
+        tableName = 'reviews';
+        idColumnName = 'review_id'; // Adjust this based on your actual primary key column name for reviews
+        break;
+      default:
+        return res.status(400).send('Invalid entity specified');
+    }
+
+    // Delete the item from the database
+    const [result] = await pool.query(`DELETE FROM ${tableName} WHERE ${idColumnName} = ?`, [itemId]);
+
+    if (result.affectedRows === 0) {
+      // If no rows were affected, it means the item with the specified ID was not found
+      return res.status(404).send('Item not found');
+    }
+
+    res.sendStatus(200); // Send a success status code if removal is successful
+  } catch (error) {
+    console.error('Error:', error);
+    res.sendStatus(500); // Send an error status code if removal fails
+  }
+});
+
 
 
 
