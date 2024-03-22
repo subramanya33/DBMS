@@ -8,7 +8,7 @@
     <!-- Link to the same stylesheet used in index.css -->
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="bmw.css">
-    <script src="loginstatus.js" defer></script>
+
 
     <style>
         body {
@@ -84,7 +84,7 @@
 
     <!-- Add reviews section -->
     <div class="reviews-container">
-        <a href="#" class="reviews-link">Reviews</a>
+
     </div>
 
     <div class="car-details-container">
@@ -112,7 +112,7 @@
             </div>
             <div class="car-details">
             <div class="ratings">
-                <h2>Ratings:</h2>
+                <h2>Ratings</h2>
                 <!-- Add your rating details here -->
                 <p>Performance: 5/5</p>
                 <p>Safety: 4/5</p>
@@ -142,15 +142,51 @@
         </div>
     </div>
 
+    <!-- Add user reviews option -->
+    <div class="user-reviews-container">
+        <button id="userReviewsButton">User Reviews</button>
+    </div>
+
     <script>
-        // You can add additional JavaScript logic here if needed
-        // For example, dynamically update the car name based on the search term
-        const searchTerm = "BMW X"; // Replace with your actual search term
-        document.getElementById("carName").innerText = searchTerm + " Details";
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Your existing code for fetching reviews and updating login status
+            // You need to include the function displayReviews(reviews) to display reviews and the updatePageTitle(carName) function to update the page title.
+        });
 
         // After successful login operation, update local storage and login status
-        localStorage.setItem('loggedInUser', 'username'); // Replace 'username' with actual username
-        updateLoginStatus(); // Update the login status
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        const loginLink = document.getElementById('loginLink');
+        const logoutLink = document.getElementById('logoutLink');
+
+        if (loggedInUser) {
+            // If user is logged in, hide the login link and show the logout link
+            loginLink.style.display = 'none';
+            logoutLink.style.display = 'inline';
+        } else {
+            // If user is not logged in, show the login link and hide the logout link
+            loginLink.style.display = 'inline';
+            logoutLink.style.display = 'none';
+        }
+
+        // Event listener for the logout link
+        logoutLink.addEventListener('click', function () {
+            // Clear the logged-in user from local storage and reload the page
+            localStorage.removeItem('loggedInUser');
+            location.reload();
+        });
+
+        // Event listener for user reviews button
+        // Event listener for user reviews button
+        document.getElementById('userReviewsButton').addEventListener('click', function () {
+            // Get the user_id and car_id from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            const carId = urlParams.get('car_id');
+
+            // Redirect to user reviews page with user_id and car_id as query parameters
+            window.location.href = `reviews.html?user_id=${userId || ''}&car_id=${carId || ''}`;
+        });
+
     </script>
      <script src="slider.js"></script>
 </body>

@@ -61,6 +61,7 @@
                 if (response.ok) {
                     alert('Login successful'); // Display popup message
                     localStorage.setItem('loggedInUser', JSON.stringify(data.user));
+                    localStorage.setItem('userId', data.user.userId);
                     window.location.href = 'index.html'; // Redirect to home page
                 } else {
                     alert(data.error); // Display login error
