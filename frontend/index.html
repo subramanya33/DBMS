@@ -39,8 +39,6 @@
     <div class="input-container">
         <!-- Add a search button with the same font style -->
         <button id="searchButton">Go</button>
-        <!-- Add a button for reviews -->
-        <button id="reviewButton">Reviews</button>
     </div>
 
     <script>
@@ -121,56 +119,41 @@
                 carYearDropdown.appendChild(option);
             });
         });
-
-        document.getElementById('searchButton').addEventListener('click', function () {
+        document.getElementById('searchButton').addEventListener('click', async function () {
             const selectedBrand = document.getElementById('carBrand').value;
             const selectedCategory = document.getElementById('carCategory').value;
             const selectedModel = document.getElementById('carModel').value;
             const selectedYear = document.getElementById('carYear').value;
 
+            // Fetch the user ID from local storage
+            const userId = localStorage.getItem('userId');
+
             // Check conditions for redirection based on selected options
-            if (selectedBrand === 'Audi' && selectedModel === 'A4' /* Add more conditions if needed */) {
-                window.location.href = `audia4.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
-            } if (selectedBrand === 'Audi' && selectedModel === 'Q3' /* Add more conditions if needed */) {
-                window.location.href = `audiq3.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
-            } else if (selectedBrand === 'BMW' && selectedModel === 'X5' /* Add conditions for BMW */) {
-                window.location.href = `bmw.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+            if (selectedBrand === 'Audi' && selectedModel === 'A4') {
+                window.location.href = `audia4.html?user_id=${userId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+            } else if (selectedBrand === 'Audi' && selectedModel === 'Q3') {
+                window.location.href = `audiq3.html?user_id=${userId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+            } else if (selectedBrand === 'BMW' && selectedModel === 'X5') {
+                // Hard-coded car ID for demonstration, replace with actual logic
+                const carId = 2;
+                const userId = 29;
+                window.location.href = `bmw.html?user_id=${userId}&car_id=${carId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
             } else if (selectedBrand === 'BMW' && selectedModel === '3 SERIES') {
-                window.location.href = `bmw3ser.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
-            } else if (selectedBrand === 'Mercedes' && selectedModel === 'A-Class' /* Add conditions for Mercedes */) {
-                window.location.href = `mercAClass.html?brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+                window.location.href = `bmw3ser.html?user_id=${userId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+            } else if (selectedBrand === 'Mercedes' && selectedModel === 'A-Class') {
+                window.location.href = `mercAClass.html?user_id=${userId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
             } else {
                 // Handle other cases or provide a default redirect
                 alert('Car details page not available for the selected options.');
             }
         });
-
-        // Event listener for the review button
-        document.getElementById('reviewButton').addEventListener('click', function () {
-            const selectedBrand = document.getElementById('carBrand').value;
-            const selectedCategory = document.getElementById('carCategory').value;
-            const selectedModel = document.getElementById('carModel').value;
-            const selectedYear = document.getElementById('carYear').value;
-
-            // Check if any car details are selected before redirecting to the reviews page
-            if (selectedBrand && selectedCategory && selectedModel && selectedYear) {
-                // Redirect to reviews page with selected car details
-                window.location.href = 'reviews.html?brand=' + selectedBrand +
-                    '&category=' + selectedCategory +
-                    '&model=' + selectedModel +
-                    '&year=' + selectedYear;
-            } else {
-                // Alert the user to select a car first
-                alert('Please select a car before viewing reviews.');
-            }
-        });
-
         // Check if the user is already logged in
         const loggedInUser = localStorage.getItem('loggedInUser');
         const loginLink = document.getElementById('loginLink');
         const logoutLink = document.getElementById('logoutLink');
 
         if (loggedInUser) {
+            // If user is logged in,
             // If user is logged in, hide the login link and show the logout link
             loginLink.style.display = 'none';
             logoutLink.style.display = 'inline';
@@ -186,6 +169,74 @@
             localStorage.removeItem('loggedInUser');
             location.reload();
         });
+
+        // Update login status when the page loads
+        window.addEventListener('DOMContentLoaded', async function () {
+            await updateLoginStatus();
+        });
+
+        // Function to update login status and UI
+        async function updateLoginStatus() {
+            const localLoggedInUser = localStorage.getItem('loggedInUser');
+            const serverLoggedInUser = await isLoggedIn();
+
+            const loginLinks = document.querySelectorAll('.login-link');
+            const logoutLinks = document.querySelectorAll('.logout-link');
+
+            // Determine if the user is logged in based on both local storage and server-side session
+            const userLoggedIn = localLoggedInUser || serverLoggedInUser;
+
+            if (userLoggedIn) {
+                loginLinks.forEach(link => link.style.display = 'none');
+                logoutLinks.forEach(link => link.style.display = 'inline');
+            } else {
+                loginLinks.forEach(link => link.style.display = 'inline');
+                logoutLinks.forEach(link => link.style.display = 'none');
+            }
+        }
+
+        // Function to check if the user is logged in based on server-side session
+        async function isLoggedIn() {
+            try {
+                const response = await fetch('/check-session');
+                if (response.ok) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error checking session status:', error);
+                return false;
+            }
+        }
+
+        // Function to retrieve user ID after successful login
+        async function getUserIdAfterLogin() {
+            // Sample implementation of fetching user ID after login
+            // Replace this with your actual login mechanism
+            try {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.userId;
+                } else {
+                    throw new Error('Login failed');
+                }
+            } catch (error) {
+                console.error('Error logging in:', error);
+                return null;
+            }
+        }
     </script>
 </body>
 

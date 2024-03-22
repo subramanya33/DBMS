@@ -136,6 +136,48 @@ app.post('/login', async (req, res) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+// Assuming you have imported necessary modules and configured your server
+
+// Handle POST request to /login
+// Handle POST request for frontend login
+app.post('/frontend-login', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Query to select user ID based on username and password
+    const query = `SELECT id FROM users WHERE name = ? AND password = ?`;
+    const [rows, fields] = await pool.execute(query, [username, password]);
+
+    // If a user with the provided username and password exists, return the user ID
+    if (rows.length > 0) {
+      console.log('Retrieved user ID:', rows[0].id);
+      return res.status(200).json({ userId: rows[0].id });
+    } else {
+      // If no user found, return an error response
+      return res.status(401).json({ error: 'Invalid username or password' });
+    }
+  } catch (error) {
+    console.error('Error during login:', error.message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+// Assuming you have already created an instance of Express and initialized it as 'app'
+
+// Route handler for checking session status
+app.get('/check-session', (req, res) => {
+  // Check the session status here
+  // You can use req.session or any other method to determine if the user is logged in
+  // For example, you can check if a user ID exists in the session
+  if (req.session && req.session.userId) {
+    // If the user is logged in, return a success response
+    res.status(200).json({ loggedIn: true });
+  } else {
+    // If the user is not logged in, return an error response
+    res.status(401).json({ loggedIn: false });
+  }
+});
+
+
 app.post('/admin-login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -181,35 +223,61 @@ app.get('/reviews/:carId', async (req, res) => {
 // Handle POST request to submit a review for a specific car
 // Handle POST request to submit a review for a specific car
 // Handle POST request to submit a review for a specific car
+// Assuming you have necessary imports and setup for Express and MySQL
+
+// POST endpoint for submitting a review
+// POST endpoint for submitting a review
+// POST endpoint for submitting a review
+// Inside your submit review endpoint
 app.post('/submit-review', async (req, res) => {
-  const { carName, category, model, year, reviewText } = req.body;
+  const { carId, userId, reviewText, performanceRating, comfortRating } = req.body;
 
   try {
-    const connection = await pool.getConnection();
-
-    // Get the car ID from the database based on car details
-    const [carIdRows] = await connection.execute('SELECT id FROM cars WHERE car_name = ? AND category = ? AND model = ? AND year = ?', [carName, category, model, year]);
-
-    if (carIdRows.length === 0) {
-      // If car not found, return a 404 Not Found response
-      return res.status(404).json({ error: 'Car not found' });
+    console.log('Received review data:', req.body); // Log received data
+    // Check if any of the required parameters are missing or invalid
+    if (!carId || !userId || !reviewText || !performanceRating || !comfortRating) {
+      return res.status(400).json({ error: 'One or more parameters are missing or invalid' });
     }
 
-    const carId = carIdRows[0].id;
+    // Validate input values (e.g., check if carId and userId are valid)
 
     // Insert the review into the database
-    await connection.query('INSERT INTO reviews (car_id, review_text) VALUES (?, ?)', [carId, reviewText]);
+    const sql = 'INSERT INTO reviews (car_id, user_id, review_text, performance_rating, comfort_rating) VALUES (?, ?, ?, ?, ?)';
+    const [result] = await pool.execute(sql, [carId, userId, reviewText, performanceRating, comfortRating]);
 
-    connection.release();
-
-    // Return success response
-    res.status(200).json({ message: 'Review submitted successfully' });
+    console.log('Review submitted successfully');
+    res.json({ message: 'Review submitted successfully' });
   } catch (error) {
-    console.error('Error submitting review:', error.message);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Error submitting review:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
+
+
+
+
+
+
+
+// Assuming you have already imported necessary modules and configured your server
+
+// Handle GET request to fetch user reviews
+// Handle GET request to fetch user reviews for a specific car
+app.get('/user-reviews/:carId', async (req, res) => {
+  const carId = req.params.carId;
+
+  try {
+    // Fetch user reviews for the specified car from the database
+    const [carReviews] = await pool.query('SELECT * FROM reviews WHERE car_id = ?', [carId]);
+    res.json(carReviews);
+    //console.log(carReviews); // Add this line after fetching user reviews
+
+  } catch (error) {
+    console.error('Error fetching user reviews for car:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
 
@@ -285,7 +353,7 @@ app.delete('/remove/:entity', async (req, res) => {
         break;
       case 'reviews':
         tableName = 'reviews';
-        idColumnName = 'review_id'; // Adjust this based on your actual primary key column name for reviews
+        idColumnName = 'id'; // Adjust this based on your actual primary key column name for reviews
         break;
       default:
         return res.status(400).send('Invalid entity specified');
