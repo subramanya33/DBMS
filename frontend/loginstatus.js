@@ -11,9 +11,10 @@ loginButton.addEventListener('click', async () => {
     try {
         const userId = await getUserIdAfterLogin(username, password);
         if (userId) {
-            // Store the user ID in a cookie after a successful login
-            document.cookie = `userId=${userId}; path=/`;
-            console.log('User ID:', userId);
+            // Store the user ID in local storage only after a successful login
+            localStorage.setItem('userId', userId);
+            // const id = localStorage.getItem('loggedInUser');
+            // console.log('User ID:', id);
             // Update login status and UI
             updateLoginStatus();
         } else {
@@ -48,14 +49,14 @@ async function getUserIdAfterLogin(username, password) {
 
 // Function to update login status and UI
 async function updateLoginStatus() {
-    const userId = getCookie('userId');
+    const localLoggedInUser = localStorage.getItem('loggedInUser');
     const serverLoggedInUser = await isLoggedIn();
 
     const loginLinks = document.querySelectorAll('.login-link');
     const logoutLinks = document.querySelectorAll('.logout-link');
 
-    // Determine if the user is logged in based on both cookies and server-side session
-    const userLoggedIn = userId || serverLoggedInUser;
+    // Determine if the user is logged in based on both local storage and server-side session
+    const userLoggedIn = localLoggedInUser || serverLoggedInUser;
 
     if (userLoggedIn) {
         loginLinks.forEach(link => link.style.display = 'none');
@@ -69,23 +70,10 @@ async function updateLoginStatus() {
 // Event listener for logout action
 document.addEventListener('click', async function (event) {
     if (event.target.classList.contains('logout-link')) {
-        // Remove the userId cookie on logout
-        document.cookie = 'userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        localStorage.removeItem('loggedInUser');
         await updateLoginStatus();
     }
 });
-
-// Function to get a cookie by name
-function getCookie(name) {
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-        const [cookieName, cookieValue] = cookie.split('=');
-        if (cookieName.trim() === name) {
-            return cookieValue;
-        }
-    }
-    return null;
-}
 
 // Function to check if the user is logged in based on server-side session
 async function isLoggedIn() {

@@ -15,7 +15,9 @@
 <body>
     <div class="header-links">
         <a href="index.html" class="header-link">Home</a>
-        <a href="#" class="header-link">Login</a>
+        <!-- Include the login/logout links with id "loginLink" and "logoutLink" -->
+        <a href="#" class="header-link" id="loginLink">Login</a>
+        <a href="#" class="header-link" id="logoutLink" style="display: none;">Logout</a>
         <a href="#" class="header-link">About</a>
     </div>
     <div class="car-details-container">
@@ -54,11 +56,67 @@
             </div>
         </div>
     </div>
-
+    <div class="user-reviews-container">
+        <button id="userReviewsButton">User Reviews</button>
+    </div>
     <script>
+
+        document.getElementById('userReviewsButton').addEventListener('click', function () {
+            // Get the user_id and car_id from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            const carId = urlParams.get('car_id');
+
+            // Redirect to user reviews page with user_id and car_id as query parameters
+            window.location.href = `reviews.html?user_id=${userId || ''}&car_id=${carId || ''}`;
+        });
+
+        // Function to update login status
+        function updateLoginStatus() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            const loginLink = document.getElementById('loginLink');
+            const logoutLink = document.getElementById('logoutLink');
+
+            if (loggedInUser) {
+                // If user is logged in, hide the login link and show the logout link
+                loginLink.style.display = 'none';
+                logoutLink.style.display = 'inline';
+            } else {
+                // If user is not logged in, show the login link and hide the logout link
+                loginLink.style.display = 'inline';
+                logoutLink.style.display = 'none';
+            }
+        }
+
+        // Event listener for the logout link
+        document.getElementById('logoutLink').addEventListener('click', function () {
+            // Clear the logged-in user from local storage and update login status
+            localStorage.removeItem('loggedInUser');
+            updateLoginStatus();
+        });
+
+        // Update login status when the page loads
+        window.addEventListener('DOMContentLoaded', updateLoginStatus);
+
         const searchTerm = "Audi A4";
         document.getElementById("carName").innerText = searchTerm + " Details";
+        document.getElementById('userReviewsButton').addEventListener('click', function () {
+            // Get the user_id from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+
+            // Get the car details
+            const carName = "Audi A4"; // Replace this with the actual car name
+            const selectedBrand = "Audi"; // Replace this with the actual brand
+            const selectedModel = "A4"; // Replace this with the actual model
+            const selectedYear = "2021"; // Replace this with the actual year
+
+            // Redirect to user reviews page with user_id and car details as query parameters
+            window.location.href = `reviews.html?user_id=${userId || ''}&brand=${selectedBrand}&model=${selectedModel}&year=${selectedYear}`;
+        });
+
     </script>
 </body>
 
 </html>
+```

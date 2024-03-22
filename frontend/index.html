@@ -18,16 +18,17 @@
     </div>
     <br><br>
     <div class="slideshow-container">
-        <div style="color: aliceblue;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;"> FEATURED CARS</div>
+        <div style="color: aliceblue;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;"> FEATURED
+            CARS</div>
         <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
             <img src="photos/1.jpeg" style="width:100%">
-            <div class="text">Caption Text</div>
+
         </div>
         <div class="mySlides fade">
             <div class="numbertext">2 / 3</div>
             <img src="photos/2.jpeg" style="width:100%">
-            <div class="text">Caption Two</div>
+
         </div>
         <div class="mySlides fade">
             <div class="numbertext">3 / 3</div>
@@ -37,7 +38,7 @@
         <div class="mySlides fade">
             <div class="numbertext">3 / 3</div>
             <img src="photos/4.jpg" style="width:100%">
-            <div class="text">Caption Three</div>
+
         </div>
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -48,8 +49,8 @@
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
     </div>
-            
-        
+
+
 
 
     <div class="input-container">
@@ -121,6 +122,9 @@
             const modelsResponse = await fetch(`/models?brand=${selectedBrand}&category=${selectedCategory}`);
             const models = await modelsResponse.json();
 
+
+            localStorage.setItem("modelId", models);
+
             // Update the models dropdown
             const carModelDropdown = document.getElementById('carModel');
             carModelDropdown.innerHTML = '';
@@ -159,19 +163,22 @@
             const selectedCategory = document.getElementById('carCategory').value;
             const selectedModel = document.getElementById('carModel').value;
             const selectedYear = document.getElementById('carYear').value;
-
             // Fetch the user ID from local storage
             const userId = localStorage.getItem('userId');
+            const carId = localStorage.getItem('modelId');
 
             // Check conditions for redirection based on selected options
             if (selectedBrand === 'Audi' && selectedModel === 'A4') {
-                window.location.href = `audia4.html?user_id=${userId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+                const carId = 1;
+                window.location.href = `audia4.html?user_id=${userId}&car_id=${carId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+
             } else if (selectedBrand === 'Audi' && selectedModel === 'Q3') {
+
                 window.location.href = `audiq3.html?user_id=${userId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
             } else if (selectedBrand === 'BMW' && selectedModel === 'X5') {
                 // Hard-coded car ID for demonstration, replace with actual logic
                 const carId = 2;
-                const userId = 29;
+                const userId = localStorage.getItem('userId');
                 window.location.href = `bmw.html?user_id=${userId}&car_id=${carId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
             } else if (selectedBrand === 'BMW' && selectedModel === '3 SERIES') {
                 window.location.href = `bmw3ser.html?user_id=${userId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;

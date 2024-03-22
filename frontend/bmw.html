@@ -70,6 +70,75 @@
             margin: 0 10px;
             /* Adjust the margin as needed */
         }
+
+        h2 {
+            color: black;
+            /* Change heading font color to black */
+        }
+
+        .user-reviews-container {
+            text-align: center;
+            /* Align content to the center */
+        }
+
+
+        #userReviewsButton {
+            background-color: #007BFF;
+            /* Set button background color */
+            color: white;
+            /* Set button text color */
+            border: none;
+            /* Remove button border */
+            padding: 10px 20px;
+            /* Add padding to button */
+            font-size: 16px;
+            /* Set button text size */
+            cursor: pointer;
+            /* Change cursor to pointer on hover */
+            border-radius: 5px;
+            /* Add border radius for rounded corners */
+            transition: background-color 0.3s ease;
+            /* Add transition effect */
+        }
+
+        .ratings {
+            text-align: center;
+            margin-bottom: 60px;
+            /* Add some space below the rating bars */
+        }
+
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rating-label {
+            width: 120px;
+        }
+
+        .bar-container {
+            background-color: #f0f0f0;
+            width: 200px;
+            height: 20px;
+            border-radius: 10px;
+            margin-left: 10px;
+
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 10px;
+            background-color: #007BFF;
+        }
+
+        #userReviewsButton:hover {
+            background-color: #0056b3;
+            /* Darken button background color on hover */
+        }
     </style>
 </head>
 
@@ -90,33 +159,105 @@
     <div class="car-details-container">
         <h1 id="carName">Car Details</h1>
 
-        
-            <div class="slideshow-container">
-                <div class="mySlides fade">
-                    <div class="numbertext">1 / 3</div>
-                    <img src="photos/x5(1).jpg" style="width:100%">
-                    <div class="text">Caption Text</div>
-                </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">2 / 3</div>
-                    <img src="photos/x5(2).webp" style="width:100%">
-                    <div class="text">Caption Two</div>
-                </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">3 / 3</div>
-                    <img src="photos/x5(3).jpeg" style="width:100%">
-                    <div class="text">Caption Three</div>
-                </div>
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="photos/x5(1).jpg" style="width:100%">
+
             </div>
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <img src="photos/x5(2).webp" style="width:100%">
+
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <img src="photos/x5(3).jpeg" style="width:100%">
+
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <div class="car-details">
             <div class="car-details">
+                <h2>Description</h2>
+                <p>The BMW X5 stands as a testament to luxury, innovation, and performance in the realm of SUVs. With
+                    its striking design, cutting-edge technology, and dynamic driving capabilities, the X5 offers an
+                    unparalleled driving experience that caters to the needs of discerning drivers.</p>
+
+                <h2>Design and Exterior</h2>
+                <p>The BMW X5 boasts a commanding presence on the road, characterized by its athletic proportions,
+                    distinctive kidney grille, and expressive LED headlights. The sleek body lines and aerodynamic
+                    silhouette not only exude elegance but also contribute to enhanced performance and efficiency.</p>
+
+                <h2>Interior Comfort and Luxury</h2>
+                <p>Step inside the BMW X5, and you'll be enveloped in a world of luxury and sophistication. Premium
+                    materials, exquisite craftsmanship, and thoughtful design elements create an ambiance of refinement
+                    and comfort. The spacious cabin accommodates passengers with generous legroom and ample cargo space,
+                    making every journey a pleasure.</p>
+
+                <h2>Performance and Handling</h2>
+                <p>Under the hood, the BMW X5 offers a range of potent engines that deliver exhilarating performance
+                    without compromising efficiency. Whether it's the robust power of the inline-six or the electrifying
+                    performance of the available plug-in hybrid powertrain, the X5 ensures a dynamic driving experience
+                    with responsive handling and impressive agility.</p>
+
+                <h2>Safety and Technology</h2>
+                <p>Equipped with the latest safety features and advanced technology, the BMW X5 provides peace of mind
+                    and convenience on every drive. From driver assistance systems that enhance safety to intuitive
+                    infotainment features that keep you connected, the X5 offers a comprehensive suite of innovations
+                    designed to elevate your driving experience.</p>
+
+                <h2>Key Features</h2>
+                <ul>
+                    <li>Powerful engine options, including hybrid variants for eco-conscious driving</li>
+                    <li>Luxurious interior with premium materials and state-of-the-art amenities</li>
+                    <li>Advanced safety features, such as adaptive cruise control and lane-keeping assist</li>
+                    <li>Cutting-edge infotainment system with touchscreen display and voice recognition</li>
+                    <li>Dynamic driving dynamics with available adaptive suspension and all-wheel drive</li>
+                </ul>
+
+                <h2>Conclusion</h2>
+                <p>In conclusion, the BMW X5 redefines the luxury SUV segment with its combination of elegance,
+                    performance, and technology. Whether you're navigating city streets or embarking on a weekend
+                    adventure, the X5 offers unmatched versatility and sophistication, making it the ultimate choice for
+                    discerning drivers who demand nothing but the best.</p>
+
+                <p>Experience the pinnacle of automotive excellence with the BMW X5 – where luxury meets performance in
+                    perfect harmony.</p>
+            </div>
+
             <div class="ratings">
+
                 <h2>Ratings</h2>
+                <div class="rating-bar">
+                    <span class="rating-label">Performance:</span>
+                    <div class="bar-container">
+                        <div class="bar" style="width: 80%;"></div>
+                    </div>
+                </div>
+                <div class="rating-bar">
+                    <span class="rating-label">Safety:</span>
+                    <div class="bar-container">
+                        <div class="
+                        bar" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="rating-bar">
+                    <span class="rating-label">Comfort:</span>
+                    <div class="bar-container">
+
+                        <div class="bar" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+
+
+
+
                 <!-- Add your rating details here -->
-                <p>Performance: 5/5</p>
-                <p>Safety: 4/5</p>
-                <p>Comfort: 5/5</p>
+
             </div>
 
             <div class="pros-cons">
@@ -144,6 +285,7 @@
 
     <!-- Add user reviews option -->
     <div class="user-reviews-container">
+        <h2>User's Opinion</h2>
         <button id="userReviewsButton">User Reviews</button>
     </div>
 
@@ -188,7 +330,7 @@
         });
 
     </script>
-     <script src="slider.js"></script>
+    <script src="slider.js"></script>
 </body>
 
 </html>

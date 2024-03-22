@@ -37,7 +37,8 @@
                 <p>Don't have an account?<a href="reg.html">Register</a></p>
             </div>
         </form>
-        <p class="admin-link" id="adminLink">Admin? <a href="adminlogin.html" onclick="showAdminLogin()">Admin Login</a></p>
+        <p class="admin-link" id="adminLink">Admin? <a href="adminlogin.html" onclick="showAdminLogin()">Admin Login</a>
+        </p>
     </div>
 
     <script>
@@ -61,7 +62,7 @@
                 if (response.ok) {
                     alert('Login successful'); // Display popup message
                     localStorage.setItem('loggedInUser', JSON.stringify(data.user));
-                    localStorage.setItem('userId', data.user.userId);
+                    localStorage.setItem('userId', data?.user?.id);
                     window.location.href = 'index.html'; // Redirect to home page
                 } else {
                     alert(data.error); // Display login error

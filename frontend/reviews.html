@@ -77,10 +77,19 @@
 
 
     <script>
-        function updatePageTitle(carName) {
-            document.title = `${carName} Reviews`;
-            document.getElementById('pageTitle').innerText = `${carName} Reviews`;
+
+        function updatePageTitle() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const brand = urlParams.get('brand');
+            const model = urlParams.get('model');
+            const year = urlParams.get('year');
+            const pageTitle = `${brand} ${model} ${year} Reviews`;
+            document.title = pageTitle;
+            document.getElementById('pageTitle').innerText = pageTitle;
         }
+
+        document.addEventListener('DOMContentLoaded', updatePageTitle);
+
 
         async function updateLoginStatus() {
             const loggedInUser = localStorage.getItem('loggedInUser');
@@ -177,7 +186,11 @@
                 console.error('Error fetching user reviews:', error.message);
             }
         });
-
+        function formatDateTime(dateTimeString) {
+            const dateTime = new Date(dateTimeString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+            return dateTime.toLocaleString('en-US', options);
+        }
         function displayUserReviews(carReviews) {
             const userReviewsContainer = document.getElementById('userReviewsContainer');
             userReviewsContainer.innerHTML = '';
@@ -186,10 +199,11 @@
                 const reviewElement = document.createElement('div');
                 reviewElement.classList.add('user-review');
                 reviewElement.innerHTML = `
-                    <p><strong>User:</strong> ${review.user_id}</p>
-                    <p><strong>Review:</strong> ${review.review_text}</p>
+                    <p><strong>UserId:</strong> ${review.user_id}</p>
+                    <p><strong>Comment:</strong> ${review.review_text}</p>
                     <p><strong>Performance Rating:</strong> ${review.performance_rating}</p>
                     <p><strong>Comfort Rating:</strong> ${review.comfort_rating}</p>
+                    <p><strong>Reviewed on:</strong>${formatDateTime(review.review_date)}</p>
                 `;
                 userReviewsContainer.appendChild(reviewElement);
             });
@@ -202,10 +216,11 @@
                 const reviewElement = document.createElement('div');
                 reviewElement.classList.add('review');
                 reviewElement.innerHTML = `
-                    <p><strong>User:</strong> ${review.user_id}</p>
-                    <p><strong>Review:</strong> ${review.review_text}</p>
+                    <p><strong>UserId:</strong> ${review.user_id}</p>
+                    <p><strong>Comment:</strong> ${review.review_text}</p>
                     <p><strong>Performance Rating:</strong> ${review.performance_rating}</p>
                     <p><strong>Comfort Rating:</strong> ${review.comfort_rating}</p>
+                    <p><strong>Reviewed on:</strong>${formatDateTime(review.review_date)}</p>
                 `;
                 reviewsContainer.appendChild(reviewElement);
             });
