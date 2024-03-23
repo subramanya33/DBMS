@@ -19,8 +19,6 @@ Installation and Setup
 To set up the Automobile Review System on your local machine, follow these steps:
 
 Clone the Repository: Clone the repository to your local machine using Git.
-bash
-Copy code
 git clone <repository-url>
 Install Dependencies: Navigate to the project directory and install the required dependencies for both frontend and backend.
 create .env file to setup database
