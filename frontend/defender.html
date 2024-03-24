@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details</title>
+    <!-- Link to the same stylesheet used in index.css -->
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="bmw.css">
+
+
+    <style>
+        body {
+            background: beige;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-links {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .header-link {
+            margin-left: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .reviews-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .reviews-link {
+            margin-right: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .car-details-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .car-details {
+            /* Add any specific styles for car details */
+        }
+
+        .ratings,
+        .pros-cons {
+            /* Add any specific styles for ratings and pros-cons sections */
+        }
+
+        .carousel-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-item {
+            flex-shrink: 0;
+            margin: 0 10px;
+            /* Adjust the margin as needed */
+        }
+        p{
+            width: 80%;
+            margin-left: 10%;
+        }
+
+        h2 {
+            color: black;
+            /* Change heading font color to black */
+        }
+
+        .user-reviews-container {
+            text-align: center;
+            /* Align content to the center */
+        }
+
+
+        #userReviewsButton {
+            background-color: #007BFF;
+            /* Set button background color */
+            color: white;
+            /* Set button text color */
+            border: none;
+            /* Remove button border */
+            padding: 10px 20px;
+            /* Add padding to button */
+            font-size: 16px;
+            /* Set button text size */
+            cursor: pointer;
+            /* Change cursor to pointer on hover */
+            border-radius: 5px;
+            /* Add border radius for rounded corners */
+            transition: background-color 0.3s ease;
+            /* Add transition effect */
+        }
+
+        .ratings {
+            text-align: center;
+            margin-bottom: 60px;
+            /* Add some space below the rating bars */
+        }
+
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rating-label {
+            width: 120px;
+        }
+
+        .bar-container {
+            background-color: #f0f0f0;
+            width: 200px;
+            height: 20px;
+            border-radius: 10px;
+            margin-left: 10px;
+
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 10px;
+            background-color: #007BFF;
+        }
+
+        #userReviewsButton:hover {
+            background-color: #0056b3;
+            /* Darken button background color on hover */
+        }
+
+        .pros-cons {
+            margin-top: 20px;
+        }
+
+        .pros-cons table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .pros-cons th,
+        .pros-cons td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pros-cons th {
+            background-color: #f2f2f2;
+        }
+
+        .pros-cons td {
+            vertical-align: top;
+        }
+
+        .pros-cons th:first-child,
+        .pros-cons td:first-child {
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body >
+    <div class="header-links">
+        <a href="index.html" class="header-link">Home</a>
+        <!-- Include the login/logout link with id "loginLogoutLink" -->
+        <a href="login.html" class="login-link header-link" id="loginLink">Login</a>
+        <a href="#" class="logout-link header-link" style="display: none;" id="logoutLink">Logout</a>
+        <a href="#" class="header-link">About</a>
+    </div>
+
+    <!-- Add reviews section -->
+    <div class="reviews-container">
+
+    </div>
+
+    <div class="car-details-container">
+        <h1 id="carName">DEFENDER</h1>
+
+
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="photos/def(1).webp" style="width:100%">
+
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <img src="photos/def(2).webp" style="width:100%">
+
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <img src="photos/def(3).jpeg" style="width:100%">
+
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <div class="car-details">
+            <h2>Description</h2>
+            <p >The BMW X5 stands as a testament to luxury, innovation, and performance in the realm of SUVs. With
+                its striking design, cutting-edge technology, and dynamic driving capabilities, the X5 offers an
+                unparalleled driving experience that caters to the needs of discerning drivers.</p>
+
+            <h2>Design and Exterior</h2>
+            <p>The BMW X5 boasts a commanding presence on the road, characterized by its athletic proportions,
+                distinctive kidney grille, and expressive LED headlights. The sleek body lines and aerodynamic
+                silhouette not only exude elegance but also contribute to enhanced performance and efficiency.</p>
+
+            <h2>Interior Comfort and Luxury</h2>
+            <p>Step inside the BMW X5, and you'll be enveloped in a world of luxury and sophistication. Premium
+                materials, exquisite craftsmanship, and thoughtful design elements create an ambiance of refinement
+                and comfort. The spacious cabin accommodates passengers with generous legroom and ample cargo space,
+                making every journey a pleasure.</p>
+
+            <h2>Performance and Handling</h2>
+            <p>Under the hood, the BMW X5 offers a range of potent engines that deliver exhilarating performance
+                without compromising efficiency. Whether it's the robust power of the inline-six or the electrifying
+                performance of the available plug-in hybrid powertrain, the X5 ensures a dynamic driving experience
+                with responsive handling and impressive agility.</p>
+
+            <h2>Safety and Technology</h2>
+            <p>Equipped with the latest safety features and advanced technology, the BMW X5 provides peace of mind
+                and convenience on every drive. From driver assistance systems that enhance safety to intuitive
+                infotainment features that keep you connected, the X5 offers a comprehensive suite of innovations
+                designed to elevate your driving experience.</p>
+
+            <h2>Key Features</h2>
+            <ul>
+                <li>Powerful engine options, including hybrid variants for eco-conscious driving</li>
+                <li>Luxurious interior with premium materials and state-of-the-art amenities</li>
+                <li>Advanced safety features, such as adaptive cruise control and lane-keeping assist</li>
+                <li>Cutting-edge infotainment system with touchscreen display and voice recognition</li>
+                <li>Dynamic driving dynamics with available adaptive suspension and all-wheel drive</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>In conclusion, the BMW X5 redefines the luxury SUV segment with its combination of elegance,
+                performance, and technology. Whether you're navigating city streets or embarking on a weekend
+                adventure, the X5 offers unmatched versatility and sophistication, making it the ultimate choice for
+                discerning drivers who demand nothing but the best.</p>
+
+            <p>Experience the pinnacle of automotive excellence with the BMW X5 – where luxury meets performance in
+                perfect harmony.</p>
+        </div>
+
+        <div class="ratings">
+            <h2>Ratings</h2>
+            <div class="rating-bar">
+                <span class="rating-label">Performance:</span>
+                <div class="bar-container">
+                    <div class="bar" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="rating-bar">
+                <span class="rating-label">Safety:</span>
+                <div class="bar-container">
+                    <div class="bar" style="width: 70%;"></div>
+                </div>
+            </div>
+            <div class="rating-bar">
+                <span class="rating-label">Comfort:</span>
+                <div class="bar-container">
+                    <div class="bar" style="width: 90%;"></div>
+                </div>
+            </div>
+            <!-- Add more rating bars as needed -->
+        </div>
+
+        <div class="pros-cons">
+            <h2>Pros and Cons</h2>
+            <table>
+
+                <tr>
+                    <td style="text-align: center;">Powerful engine</td>
+                    <td style="text-align: center;">High maintenance cost</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">Luxurious interior</td>
+                    <td style="text-align: center;">Limited cargo space</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">Advanced safety features</td>
+                    <td style="text-align: center;">Complex infotainment system</td>
+                </tr>
+                <!-- Add more rows for additional pros and cons -->
+                <tr>
+                    <td style="text-align: center;">Smooth ride</td>
+                    <td style="text-align: center;">Expensive initial price</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">Good fuel efficiency</td>
+                    <td style="text-align: center;">Requires premium fuel</td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+    </div>
+    </div>
+
+    <!-- Add user reviews option -->
+    <div class="user-reviews-container">
+        <h2>User's Opinion</h2>
+        <button id="userReviewsButton">User Reviews</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Your existing code for fetching reviews and updating login status
+            // You need to include the function displayReviews(reviews) to display reviews and the updatePageTitle(carName) function to update the page title.
+        });
+
+        // After successful login operation, update local storage and login status
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        const loginLink = document.getElementById('loginLink');
+        const logoutLink = document.getElementById('logoutLink');
+
+        if (loggedInUser) {
+            // If user is logged in, hide the login link and show the logout link
+            loginLink.style.display = 'none';
+            logoutLink.style.display = 'inline';
+        } else {
+            // If user is not logged in, show the login link and hide the logout link
+            loginLink.style.display = 'inline';
+            logoutLink.style.display = 'none';
+        }
+
+        // Event listener for the logout link
+        logoutLink.addEventListener('click', function () {
+            // Clear the logged-in user from local storage and reload the page
+            localStorage.removeItem('loggedInUser');
+            location.reload();
+        });
+
+        // Event listener for user reviews button
+        document.getElementById('userReviewsButton').addEventListener('click', function () {
+            // Get the user_id and car_id from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            const carId = urlParams.get('car_id');
+
+            // Redirect to user reviews page with user_id and car_id as query parameters
+            window.location.href = `reviews.html?user_id=${userId || ''}&car_id=${carId || ''}`;
+        });
+
+    </script>
+    <script src="slider.js"></script>
+</body>
+
+</html>
