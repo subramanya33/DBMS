@@ -80,7 +80,7 @@
 
     <script>
         // Array of car brands
-        const carBrands = ['', 'Audi', 'BMW', 'Mercedes','Land_Rover'];
+        const carBrands = ['', 'Audi', 'BMW', 'Mercedes', 'Land_Rover'];
 
         // Select the carBrand dropdown
         const carBrandDropdown = document.getElementById('carBrand');
@@ -176,11 +176,12 @@
             } else if (selectedBrand === 'Audi' && selectedModel === 'Q3') {
 
                 window.location.href = `Audiq3.html?user_id=${userId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
-            }else if (selectedBrand === 'Land_Rover' && selectedModel === 'Defender') {
+            } else if (selectedBrand === 'Land_Rover' && selectedModel === 'Defender') {
+                const carId = 7;
 
-                window.location.href = `defender.html?user_id=${userId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
+                window.location.href = `defender.html?user_id=${userId}&car_id=${carId}&brand=${selectedBrand}&category=${selectedCategory}&model=${selectedModel}&year=${selectedYear}`;
             }
-             else if (selectedBrand === 'BMW' && selectedModel === 'X5') {
+            else if (selectedBrand === 'BMW' && selectedModel === 'X5') {
                 // Hard-coded car ID for demonstration, replace with actual logic
                 const carId = 2;
                 const userId = localStorage.getItem('userId');
