@@ -7,64 +7,372 @@
     <title>Car Details</title>
     <!-- Link to the same stylesheet used in index.css -->
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="audia4.css"> <!-- Include the CSS for Audi A4 -->
+    <link rel="stylesheet" href="bmw.css">
+
+
     <style>
-        /* Common styles from the previous file */
+        body {
+            background: beige;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-links {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .header-link {
+            margin-left: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .reviews-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .reviews-link {
+            margin-right: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .car-details-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .car-details {
+            /* Add any specific styles for car details */
+        }
+
+        .ratings,
+        .pros-cons {
+            /* Add any specific styles for ratings and pros-cons sections */
+        }
+
+        .carousel-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-item {
+            flex-shrink: 0;
+            margin: 0 10px;
+            /* Adjust the margin as needed */
+        }
+        p{
+            width: 80%;
+            text-align: left;
+            margin-left: 10%;
+        }
+
+        h2 {
+            color: black;
+            text-align: left;
+            margin-left: 10%;
+            /* Change heading font color to black */
+        }
+
+        .user-reviews-container {
+            text-align: center;
+            /* Align content to the center */
+        }
+
+
+        #userReviewsButton {
+            background-color: #007BFF;
+            /* Set button background color */
+            color: white;
+            /* Set button text color */
+            border: none;
+            /* Remove button border */
+            padding: 10px 20px;
+            /* Add padding to button */
+            font-size: 16px;
+            /* Set button text size */
+            cursor: pointer;
+            /* Change cursor to pointer on hover */
+            border-radius: 5px;
+            /* Add border radius for rounded corners */
+            transition: background-color 0.3s ease;
+            /* Add transition effect */
+        }
+
+        .ratings {
+            text-align: center;
+            margin-bottom: 60px;
+            /* Add some space below the rating bars */
+        }
+
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rating-label {
+            width: 120px;
+        }
+
+        .bar-container {
+            background-color: #f0f0f0;
+            width: 200px;
+            height: 20px;
+            border-radius: 10px;
+            margin-left: 10px;
+
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 10px;
+            background-color: #007BFF;
+        }
+
+        #userReviewsButton:hover {
+            background-color: #0056b3;
+            /* Darken button background color on hover */
+        }
+
+        .pros-cons {
+            margin-top: 20px;
+        }
+
+        .pros-cons table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .pros-cons th,
+        .pros-cons td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pros-cons th {
+            background-color: #f2f2f2;
+        }
+
+        .pros-cons td {
+            vertical-align: top;
+        }
+
+        .pros-cons th:first-child,
+        .pros-cons td:first-child {
+            width: 50%;
+        }
     </style>
 </head>
 
-<body>
+<body >
     <div class="header-links">
         <a href="index.html" class="header-link">Home</a>
-        <!-- Include the login/logout links with id "loginLink" and "logoutLink" -->
-        <a href="#" class="header-link" id="loginLink">Login</a>
-        <a href="#" class="header-link" id="logoutLink" style="display: none;">Logout</a>
+        <!-- Include the login/logout link with id "loginLogoutLink" -->
+        <a href="login.html" class="login-link header-link" id="loginLink">Login</a>
+        <a href="#" class="logout-link header-link" style="display: none;" id="logoutLink">Logout</a>
         <a href="#" class="header-link">About</a>
     </div>
 
-    <div class="car-details-container">
-        <h1 id="carName">Audi A4 Details</h1>
-        <div class="slideshow-container">
-            <!-- Slideshow content here -->
-        </div>
-        <div class="car-details">
-            <img src="photos/audia4.jpeg" alt="Car Image">
-            <div class="ratings">
-                <h2>Ratings:</h2>
-                <p>Performance: 4/5</p>
-                <p>Safety: 5/5</p>
-                <p>Comfort: 4/5</p>
-            </div>
-            <div class="pros-cons">
-                <table>
-                    <tr>
-                        <th>Pros</th>
-                        <th>Cons</th>
-                    </tr>
-                    <tr>
-                        <td>Fuel-efficient</td>
-                        <td>Less powerful engine compared to rivals</td>
-                    </tr>
-                    <tr>
-                        <td>Luxurious interior</td>
-                        <td>Higher starting price</td>
-                    </tr>
-                    <tr>
-                        <td>Advanced tech features</td>
-                        <td>Compact rear seating</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+    <!-- Add reviews section -->
+    <div class="reviews-container">
+
     </div>
 
+    <div class="car-details-container">
+        <h1 id="carName">Audi A4</h1>
+
+
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="photos/a4(1).webp" style="width:100%">
+
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <img src="photos/a4(2).webp" style="width:100%">
+
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <img src="photos/a4(3).webp" style="width:100%">
+
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <div class="car-details">
+            <h2>Description</h2>
+            <p > progressive design with precisely sharpened front look and characteristic rear,
+                 the sporty character of the Audi A4 Sedan comes across more than ever before: a premium and 
+                 functional interior, innovative technologies in the realms of digitalisation, infotainment and 
+                 driver assist systems,
+                 and a new 2.0L TFSI Engine completes the package..</p>
+
+            <h2>Design and Exterior</h2>
+            <p>Design the exterior of your Audi A4 Sedan to your liking. Whether the exterior colour, rim or headlights technology:
+                 You can turn your Audi A4 Sedan into your personalised dream car using the numerous equipment options.</p>
+
+            <h2>Interior Comfort and Luxury</h2>
+            <p>The interior of the Audi A4 is the epitome of luxury and comfort. It combines modern aesthetics with supreme 
+                craftsmanship. The piano black inlay is extremely stylish. And the uniquely designed gear shift and the leather 
+                leatherette seats are designed to provide utmost comfort to the driver.</p>
+
+            <h2>Performance and Handling</h2>
+            <p>
+                The A4’s base engine is snappy enough for daily duty and helps the A4 accelerate from zero to 60 mph in 6.3 seconds, 
+                according to Audi. The more powerful turbo-four makes the same sprint in an Audi-estimated 5.2 seconds.
+                 Both motors are paired with a smooth-shifting automatic transmission that occasionally hesitates to
+                  downshift<br>The A4 offers a lively, engaging drive. The taut suspension keeps a tight rein on 
+                body motion (even more so with the sport suspension included with the upgraded 45 TSFI engine),
+                 and standard all-wheel drive enhances its road-holding grip. The brakes are firm and bring the A4 to 
+                 a halt confidently.</p>
+
+            <h2>Safety and Technology</h2>
+            <p>Dual front airbags, side airbags (front and rear) and head-protecting side curtains are standard equipment. 
+                Antilock brakes (ABS), electronic brake distribution (EBD)
+                 and electronic stability control (ESC) are also standard. Intelligent seat belt reminders are fitted to both
+                  front seats.</p>
+
+            <h2>Key Features</h2>
+            <ul style="text-align: left;margin-left: 10%;">
+                <li>Powerful engine options, including hybrid variants for eco-conscious driving</li>
+                <li>Luxurious interior with premium materials and state-of-the-art amenities</li>
+                <li>Advanced safety features, such as adaptive cruise control and lane-keeping assist</li>
+                <li>Steering Adjustment - Tilt & Telescopic</li>
+                <li>An expert balance of ride quality and agile handling</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>The Audi A4 is known for its commitment to including a long list of luxury-oriented features and 
+                the latest high-tech innovations. Even a pre-owned model that’s 
+                a few years old will likely have more advanced features than a new car from many automakers.
+                The A4 offers a well-crafted interior with premium materials, advanced technology features, and a comfortable ride.
+                 Its turbocharged engine options deliver impressive power and fuel efficiency. Additionally, the A4's compact size
+                  makes it maneuverable in city traffic while still providing ample interior space.
+                 Overall, it's a desirable choice for those seeking a blend of style and functionality in a compact luxury sedan.</p>
+
+            <p>Experience the pinnacle of automotive excellence with the BMW X5 – where luxury meets performance in
+                perfect harmony.</p>
+        </div>
+
+        <div class="ratings">
+            <h2>Ratings</h2>
+            <div class="rating-bar">
+                <span class="rating-label">Performance:</span>
+                <div class="bar-container">
+                    <div class="bar" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="rating-bar">
+                <span class="rating-label">Safety:</span>
+                <div class="bar-container">
+                    <div class="bar" style="width: 70%;"></div>
+                </div>
+            </div>
+            <div class="rating-bar">
+                <span class="rating-label">Comfort:</span>
+                <div class="bar-container">
+                    <div class="bar" style="width: 90%;"></div>
+                </div>
+            </div>
+            <!-- Add more rating bars as needed -->
+        </div>
+
+        <div class="pros-cons">
+            <h2>Pros and Cons</h2>
+            <table>
+
+                <tr>
+                    <td style="text-align: center;">Powerful engine</td>
+                    <td style="text-align: center;">High maintenance cost</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">Luxurious interior</td>
+                    <td style="text-align: center;">Limited cargo space</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">Advanced safety features</td>
+                    <td style="text-align: center;">Complex infotainment system</td>
+                </tr>
+                <!-- Add more rows for additional pros and cons -->
+                <tr>
+                    <td style="text-align: center;">Smooth ride</td>
+                    <td style="text-align: center;">Expensive initial price</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">Good fuel efficiency</td>
+                    <td style="text-align: center;">Requires premium fuel</td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+    </div>
+    </div>
+
+    <!-- Add user reviews option -->
     <div class="user-reviews-container">
+        <h2>User's Opinion</h2>
         <button id="userReviewsButton">User Reviews</button>
     </div>
 
     <script>
-        // Your JavaScript code here
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Your existing code for fetching reviews and updating login status
+            // You need to include the function displayReviews(reviews) to display reviews and the updatePageTitle(carName) function to update the page title.
+        });
+
+        // After successful login operation, update local storage and login status
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        const loginLink = document.getElementById('loginLink');
+        const logoutLink = document.getElementById('logoutLink');
+
+        if (loggedInUser) {
+            // If user is logged in, hide the login link and show the logout link
+            loginLink.style.display = 'none';
+            logoutLink.style.display = 'inline';
+        } else {
+            // If user is not logged in, show the login link and hide the logout link
+            loginLink.style.display = 'inline';
+            logoutLink.style.display = 'none';
+        }
+
+        // Event listener for the logout link
+        logoutLink.addEventListener('click', function () {
+            // Clear the logged-in user from local storage and reload the page
+            localStorage.removeItem('loggedInUser');
+            location.reload();
+        });
+
+        // Event listener for user reviews button
+        document.getElementById('userReviewsButton').addEventListener('click', function () {
+            // Get the user_id and car_id from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            const carId = urlParams.get('car_id');
+
+            // Redirect to user reviews page with user_id and car_id as query parameters
+            window.location.href = `reviews.html?user_id=${userId || ''}&car_id=${carId || ''}`;
+        });
+
     </script>
+    <script src="slider.js"></script>
 </body>
 
 </html>
