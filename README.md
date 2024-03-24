@@ -28,7 +28,7 @@ Database Setup: Set up your SQL database and configure the connection settings i
 Run the Application: Start the backend servers.
 Backend:
 cd backend
-npm start/npm run dev/nod web.js
+npm start/npm run dev/node web.js
 Usage
 Once the application is running, you can access it through your web browser. Here are some common actions you can take within the system:
 
